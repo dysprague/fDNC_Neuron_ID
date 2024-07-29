@@ -353,17 +353,12 @@ if __name__ == "__main__":
                 print('Jeff_1, num_hit:{}, num_match:{}, accuracy:{}'.format(num_hit, num_match, acc_m))
                 jeff_list_1.append(acc_m)
 
-
-
-
     print('accuracy:{}'.format(num_hit_all / max(1, num_match_all)))
     num_hit_list = np.array(num_hit_list) / num_pair
     print(num_hit_list[:10])
     print('thd ratio average:{}'.format(np.mean(thd_ratio_list)))
 
     print('CPD accuracy:{}'.format(num_hit_cpd_all / max(1, num_match_cpd_all)))
-    print('Jeff accuracy:{}'.format(num_hit_jeff_all / max(1, num_match_jeff_all)))
-    print('Jeff_1 accuracy:{}'.format(num_hit_jeff_all_1 / max(1, num_match_jeff_all_1)))
     print('trans time:{}, hung time:{}, cpd time:{}'.format(np.mean(time_trans_list), np.mean(time_hung_list), np.mean(time_cpd_list)))
     print('number of gt match:{}, total count:{}'.format(np.mean(num_match_list), len(num_match_list)))
     print('number of segment:{}'.format(np.mean(num_seg)))

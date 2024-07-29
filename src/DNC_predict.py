@@ -23,11 +23,11 @@ def match_color_norm(x_cs, y_cs):
     color_m = np.sum(x_c_log[np.newaxis, :, :] * y_c_norm[:, np.newaxis, :], axis=2) - y_H[:, np.newaxis]
     return color_m
 
-def predict_label(temp_pos, temp_label, test_pos, temp_color=None, test_color=None, cuda=True, topn=5, model_path = '../model/model.bin'):
-    model = NIT_Registration(input_dim=3, n_hidden=128, n_layer=6, p_rotate=0, feat_trans=0, cuda=cuda)
+def predict_label(temp_pos, temp_label, test_pos, temp_color=None, test_color=None, cuda=True, topn=5, model_path = '../model/model.bin', p_rotate=0, feat_trans=0):
+    model = NIT_Registration(input_dim=3, n_hidden=128, n_layer=6, p_rotate=p_rotate, feat_trans=feat_trans, cuda=cuda)
     device = torch.device("cuda:0" if cuda else "cpu")
     # load trained model
-    model_path = "../model/model.bin"
+    #model_path = "../model/model.bin"
     params = torch.load(model_path, map_location=lambda storage, loc: storage)
     model.load_state_dict(params['state_dict'])
     model = model.to(device)

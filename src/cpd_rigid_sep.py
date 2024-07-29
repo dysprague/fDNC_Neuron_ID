@@ -134,6 +134,7 @@ def register_rigid(x, y, w, max_it=250, x_c=[], y_c=[], fix_scale=False, sigma2c
             [p1, pt1, p] = cpd_p_sep(x, t, sigma2, w, m, n, d)
         # precompute
         Np = np.sum(pt1)
+        Np_max = np.max(p, axis=1)
 
         # M step, update transformation.
         x_2d, y_2d = x[:, :2], y[:, :2]
@@ -184,4 +185,4 @@ def register_rigid(x, y, w, max_it=250, x_c=[], y_c=[], fix_scale=False, sigma2c
         ts_out = ts
 
 
-    return t, r_out, ts_out, sigma2
+    return t, r_out, ts_out, sigma2, np.average(Np_max)
